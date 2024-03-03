@@ -1,10 +1,10 @@
-# Przepisownia  
+# CookieBook  
 
-## Opis projektu
+## Project description
 
-Przepisownia to aplikacja webowa, która umożliwia użytkownikom przeglądanie przepisów kulinarnych, dodawanie własnych przepisów, a także komentowanie przepisów innych użytkowników.
+CookieBook is a web application that allows users to browse recipes, add their own recipes, and comment on other users' recipes.
 
-## Technologie
+## Technologies
 
 * NestJS
 * Vue 3 z TypeScript
@@ -14,30 +14,17 @@ Przepisownia to aplikacja webowa, która umożliwia użytkownikom przeglądanie 
 * Vitest
 * Playwright
 
-## Funkcjonalności
+## Functionalities
 
-* Rejestracja i logowanie użytkowników
-* Przeglądanie przepisów
-* Dodawanie przepisów
-* Komentowanie przepisów
-* Edytowanie i aktualizowanie przepisów
-* Usuwanie przepisów (tylko przez autora)
+* User registration and login.
+* Viewing recipes
+* Adding recipes
+* Commenting on recipes
+* Editing and updating recipes
+* Deleting recipes (by author only)
 
-## Start aplikacji
-
-Do uruchomienia aplikacji powinien wystarczyć docker-compose. Wystarczy wykonać polecenie:
+## Start of applications
 
 ```bash
-docker-compose up -d
+make start
 ```
-
-## Zmienne środowiskowe
-
-Każda z aplikacji powinna korzystać ze zmiennych środowiskowych, któ®e obecnie są zlokalizowan w plikach `.env.example` w folderach `api` oraz `app`.
-
-## Testy
-
-API(`./api`) powinna zostać pokryta testami jednostkowymi, w przypadku aplikacji frontendowej(`.app`), powinny zostać zastosowane testy end-to-end oraz testy jednostkowe. 
-
-## Uwagi
-Zakończone repozytorium powinno zostać udostępnione na plaformie GitHub lub GitLab z dostępem publicznym. 
