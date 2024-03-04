@@ -12,8 +12,13 @@
     "test:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
-    "core-js": "^3.35.1",
-    "vue": "^3.4.18"
+    "@apollo/client": "^3.9.5",
+    "@vue/apollo-composable": "^4.0.1",
+    "core-js": "^3.36.0",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "vue": "^3.4.18",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.41.2",

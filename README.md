@@ -9,7 +9,6 @@ CookieBook is a web application that allows users to browse recipes, add their o
 * NestJS
 * Vue 3 z TypeScript
 * MySQL
-* pnpm
 * Docker
 * Vitest
 * Playwright
