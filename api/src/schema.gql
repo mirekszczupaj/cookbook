@@ -8,17 +8,74 @@ type User {
   password: String!
 }
 
+type Recipe {
+  id: Int!
+  title: String!
+  image: String
+  description: String
+  user: Int!
+}
+
+type Comment {
+  id: Int!
+  description: String!
+  dateTime: DateTime
+  recipe: Int!
+  user: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
 type Query {
   getUserById(id: Int!): User
   users: [User!]!
   user(login: String!): User!
+  getRecipeById(id: Int!): Recipe
+  getRecipes(user: Int): [Recipe!]
+  getCommentById(id: Int!): Comment
+  getComments(recipe: Int): [Comment!]!
 }
 
 type Mutation {
   createUser(createUserData: UserInput!): User!
+  createRecipe(createRecipeData: RecipeInput!): Recipe!
+  updateRecipe(createRecipeData: RecipeInput!, id: Int!): Recipe!
+  deleteRecipe(id: Int!): Int!
+  createComment(createCommentData: CommentInput!): Comment!
+  updateComment(createCommentData: CommentInput!, id: Int!): Comment!
+  deleteComment(id: Int!): Int!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  signup(loginUserInput: LoginUserInput!): User!
 }
 
 input UserInput {
+  login: String!
+  password: String!
+}
+
+input RecipeInput {
+  title: String!
+  image: String
+  description: String
+  user: Int!
+}
+
+input CommentInput {
+  description: String!
+  dateTime: DateTime
+  recipe: Int!
+  user: Int!
+}
+
+input LoginUserInput {
   login: String!
   password: String!
 }

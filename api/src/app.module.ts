@@ -9,6 +9,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { Recipe } from './graphql/models/recipe';
 import { Comment } from './graphql/models/comment';
 import { CommentsModule } from './comments/comments.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CommentsModule } from './comments/comments.module';
     UsersModule,
     RecipesModule,
     CommentsModule,
+    AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/schema.gql',
