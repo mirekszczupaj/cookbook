@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './graphql/models/user';
 import { RecipesModule } from './recipes/recipes.module';
 import { Recipe } from './graphql/models/recipe';
+import { Comment } from './graphql/models/comment';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -18,11 +20,12 @@ import { Recipe } from './graphql/models/recipe';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, Recipe],
+      entities: [User, Recipe, Comment],
       synchronize: true,
     }),
     UsersModule,
     RecipesModule,
+    CommentsModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/schema.gql',
