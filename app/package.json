@@ -12,11 +12,14 @@
     "test:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.5",
+    "@apollo/client": "^3.9.6",
     "@vue/apollo-composable": "^4.0.1",
+    "@vue/apollo-option": "^4.0.0",
     "core-js": "^3.36.0",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
+    "react": "^18.2.0",
+    "rehackt": "^0.0.6",
     "vue": "^3.4.18",
     "vue-router": "^4.3.0"
   },

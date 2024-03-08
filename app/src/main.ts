@@ -8,11 +8,11 @@ import router from './router'
 import './main.scss'
 
 const app = createApp({
-    setup () {
-      provide(DefaultApolloClient, ApolloClient)
-    },
-  
-    render: () => h(App)
+  setup () {
+    provide(DefaultApolloClient, ApolloClient)
+  },
+
+  render: () => h(App)
 })
 
 app.use(router)
