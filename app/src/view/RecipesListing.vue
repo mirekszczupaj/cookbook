@@ -3,4 +3,3 @@
       <h1 class="text-4xl py-6 font-bold">Recipes</h1>
     </div>
 </template>
-
