@@ -60,8 +60,10 @@ function sendForm () {
   if (isSameUrl.value) {
     const { mutate } = useMutation(CREATE_USER_MUTATION, () => ({
       variables: {
-        login: login.value,
-        password: password.value
+        input: {
+          login: login.value,
+          password: password.value
+        }
       }
     }))
     mutate()
