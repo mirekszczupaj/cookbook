@@ -1,0 +1,83 @@
+<template>
+  <form @submit.prevent="sendForm" class="p-4 m-auto max-w-2xl">
+    <h1 class="text-4xl py-6 font-bold">Edit</h1>
+    <div>
+      <label for="title"> Title </label>
+      <input
+          id="title"
+          type="text"
+          v-model="title"
+          class="border w-full p-2 mb-4"
+      />
+    </div>
+            <div>
+            <label for="image"> Image </label>
+            <input
+                id="image"
+                type="text"
+                v-model="image"
+                class="border w-full p-2 mb-4"
+            />
+            </div>
+
+            <div>
+            <label for="description"> Description </label>
+            <textarea
+                id="description"
+                type="text"
+                v-model="description"
+                class="border w-full p-2 mb-4"
+            />
+            </div>
+    <button type="submit" class="bg-orange-400 py-2 px-6 rounded text-white">Edit</button>
+  </form>
+</template>
+<script setup lang="ts">
+import { ref, watchEffect } from 'vue'
+import { UPDATE_RECIPE_MUTATION } from '../graphql/mutation/update-recipe'
+import { RECIPE_QUERY } from '../graphql/query/recipe'
+import { apolloClient } from '../appolloClient'
+import { provideApolloClient, useMutation, useQuery } from '@vue/apollo-composable'
+
+const title = ref('')
+const image = ref('')
+const description = ref('')
+
+provideApolloClient(apolloClient)
+
+const props = defineProps({
+  userId: {
+    type: String,
+    required: true
+  },
+  id: {
+    type: String,
+    required: true
+  }
+})
+
+const { result } = useQuery(RECIPE_QUERY, {
+  recipeid: parseInt(props.id)
+})
+
+watchEffect(() => {
+  if (result.value) {
+    title.value = result.value?.getRecipeById?.title
+    image.value = result.value?.getRecipeById?.image
+    description.value = result.value?.getRecipeById?.description
+  }
+})
+
+function sendForm () {
+  const { mutate } = useMutation(UPDATE_RECIPE_MUTATION, () => ({
+    variables: {
+      id: parseInt(props.id),
+      title: title.value,
+      image: image.value,
+      description: description.value,
+      userId: parseInt(props.userId)
+    }
+  }))
+  mutate()
+}
+</script>

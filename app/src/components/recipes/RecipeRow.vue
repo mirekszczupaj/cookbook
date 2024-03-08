@@ -11,11 +11,12 @@
           >
           Show
         </p>
-          <p
+          <router-link
+            :to="{ name: 'edit-recipe', params: { id: recipe?.id, userID: recipe?.user } }"
             class="py-2 px-6 rounded text-white bg-cyan-600 block mb-2 text-center"
           >
           Edit
-          </p>
+          </router-link>
           <div class="py-2 px-6 rounded text-white block bg-red-500 text-center cursor-pointer" @click="removeRecupeById()">
             Delete
           </div>
