@@ -1,7 +1,7 @@
 import { createApp, h, provide } from 'vue'
-import App from './App.vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
-import { ApolloClient } from '@apollo/client'
+import { apolloClient } from './appolloClient'
+import App from './App.vue'
 import router from './router'
 
 // TODO: Check
@@ -9,12 +9,10 @@ import './main.scss'
 
 const app = createApp({
   setup () {
-    provide(DefaultApolloClient, ApolloClient)
+    provide(DefaultApolloClient, apolloClient)
   },
 
   render: () => h(App)
 })
-
 app.use(router)
-
-createApp(App).mount('#app')
+app.mount('#app')
