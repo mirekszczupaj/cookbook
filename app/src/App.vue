@@ -1,6 +1,7 @@
 <template>
   <main>
     <HeaderLayout />
+    <router-view />
     <FooterLayout />
   </main>
 </template>

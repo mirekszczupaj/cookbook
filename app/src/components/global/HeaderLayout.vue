@@ -8,6 +8,12 @@
                 >
                     Recipes
                 </router-link>
+                <router-link
+                    :to="{ name: 'my-recipes' }"
+                    class="mr-4"
+                >
+                    My Recipes
+                </router-link>
             </div>
         </div>
     </nav>
