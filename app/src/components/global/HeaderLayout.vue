@@ -15,6 +15,14 @@
                     My Recipes
                 </router-link>
             </div>
+
+            <div>
+                <router-link
+                    :to="{ name: 'register' }"
+                >
+                    Registration
+                </router-link>
+            </div>
         </div>
     </nav>
 </template>
