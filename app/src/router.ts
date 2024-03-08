@@ -5,14 +5,28 @@ import MyRecipes from './view/MyRecipes.vue'
 import AddRecipe from './view/AddRecipe.vue'
 import RegisterUser from './view/RegisterUser.vue'
 import EditRecipe from './view/EditRecipe.vue'
+import LoginPage from './view/LoginPage.vue'
+import RecipePage from './view/RecipePage.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/recipe/:id',
+      component: RecipePage,
+      name: 'recipe',
+      props: true
+    },
+    {
       path: '/register/',
       component: RegisterUser,
       name: 'register',
+      props: true
+    },
+    {
+      path: '/login/',
+      component: LoginPage,
+      name: 'login',
       props: true
     },
     {
