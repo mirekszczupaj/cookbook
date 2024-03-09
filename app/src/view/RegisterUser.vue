@@ -29,7 +29,7 @@
             />
             </div>
 
-            <div class="text-xs text-red-600 py-2" v-show="!isSameUrl">
+            <div class="text-xs text-red-600 py-2" v-show="!isPasswordsEqual">
                   Provided Passwords must be the same!
               </div>
 
@@ -52,12 +52,12 @@ const sended = ref(false)
 
 provideApolloClient(apolloClient)
 
-const isSameUrl = computed(() => {
+const isPasswordsEqual = computed(() => {
   return password.value === confirmationPassword.value
 })
 
 function sendForm () {
-  if (isSameUrl.value) {
+  if (isPasswordsEqual.value) {
     const { mutate } = useMutation(CREATE_USER_MUTATION, () => ({
       variables: {
         input: {

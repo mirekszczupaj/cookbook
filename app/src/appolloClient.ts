@@ -5,7 +5,7 @@ import {
 } from '@apollo/client/core'
 
 const httpLink = createHttpLink({
-  uri: import.meta.env.GRAPHQL_ENDPOINT,
+  uri: process.env.VUE_APP_GRAPHQL_ENDPOINT
 })
 
 const cache = new InMemoryCache()

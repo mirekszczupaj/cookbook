@@ -10,6 +10,7 @@ export default defineConfig({
     },
     include: [
       './tests/units/**/*.{ts,js}'
-    ]
+    ],
+    environment: 'jsdom',
   }
 })
