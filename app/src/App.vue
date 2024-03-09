@@ -11,8 +11,8 @@ import { ref } from 'vue'
 import HeaderLayout from './components/global/HeaderLayout.vue'
 import FooterLayout from './components/global/FooterLayout.vue'
 
-const isAuth = ref(false)
-const userId = ref(0)
+const isAuth = ref<boolean>(false)
+const userId = ref<number>(0)
 
 // TODO: Check lifecycyle
 const token = sessionStorage.getItem('token')
@@ -24,6 +24,7 @@ function isValidToken (token: string) {
   // TODO: Check validation and set correct userid
   console.log(token)
   isAuth.value = true
+  // TODO: Temp user id
   userId.value = 1
 }
 
