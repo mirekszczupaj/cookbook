@@ -57,7 +57,6 @@ function sendForm () {
   onDone((res) => {
     // TODO: It should by save in cookie with httponly flag ?
     sessionStorage.setItem('token', JSON.stringify(res.data.login.access_token))
-    console.log(res.data)
     emit('user', {
       auth: true,
       id: res.data.login.user.id

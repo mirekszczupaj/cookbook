@@ -11,7 +11,6 @@ export class CommentService {
     ) { }
 
     getComments(recipeId: number = null) {
-        console.log(recipeId)
         const condition = recipeId !== null ? {
             where: {
                 recipe: {id: recipeId},
