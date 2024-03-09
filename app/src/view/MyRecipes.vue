@@ -21,13 +21,13 @@ import RecipeRow from '../components/recipes/RecipeRow.vue'
 
 const props = defineProps({
   userId: {
-    type: String,
+    type: Number,
     required: true
   }
 })
 
 const { result } = useQuery(RECIPES_QUERY, {
-  userId: parseInt(props.userId)
+  userId: props.userId
 })
 
 const recipes = computed(() => {

@@ -47,17 +47,17 @@ provideApolloClient(apolloClient)
 
 const props = defineProps({
   userId: {
-    type: String,
+    type: Number,
     required: true
   },
   id: {
-    type: String,
+    type: Number,
     required: true
   }
 })
 
 const { result } = useQuery(RECIPE_QUERY, {
-  recipeid: parseInt(props.id)
+  recipeid: props.id
 })
 
 watchEffect(() => {
@@ -71,11 +71,11 @@ watchEffect(() => {
 function sendForm () {
   const { mutate } = useMutation(UPDATE_RECIPE_MUTATION, () => ({
     variables: {
-      id: parseInt(props.id),
+      id: props.id,
       title: title.value,
       image: image.value,
       description: description.value,
-      userId: parseInt(props.userId)
+      userId: props.userId
     }
   }))
   mutate()
