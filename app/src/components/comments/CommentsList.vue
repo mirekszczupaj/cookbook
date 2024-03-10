@@ -1,8 +1,8 @@
 <template>
     <div v-if="isAuth">
         <h2 class="text-2xl font-bold my-4">Comments</h2>
-        <div v-if="data.value?.getComments?.length &&  recipeId">
-            <div v-for="(comment, index) in data.value.getComments" :key="index" class="border-b mb-4">
+        <div v-if="comments?.length &&  recipeId">
+            <div v-for="(comment, index) in comments" :key="index" class="border-b mb-4">
                 <span class="text-xs text-gray-500">{{comment.dateTime}}</span>
                 <p class="my-4">{{comment.description}}</p>
             </div>
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, reactive } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { CREATE_COMMENT_MUTATION } from '../../graphql/mutation/create-comment'
 import { COMMENTS_QUERY } from '../../graphql/query/comments'
 import { apolloClient } from '../../appolloClient'
@@ -33,8 +33,13 @@ import { provideApolloClient, useMutation, useQuery } from '@vue/apollo-composab
 
 provideApolloClient(apolloClient)
 
+interface comment {
+  dateTime: Date,
+  description: string
+}
+
 const description = ref<string>('')
-const data = reactive<{ getComments: object[] }>({ getComments: [] })
+const comments = ref<[comment]>([{ dateTime: new Date(), description: '' }])
 
 const props = defineProps({
   userId: {
@@ -56,19 +61,33 @@ watchEffect(() => {
       recipeId: props.recipeId
     })
 
-    data.value = result
+    comments.value = Object.assign([], result.value?.getComments)
   }
 })
 
 function sendForm () {
-  const { mutate } = useMutation(CREATE_COMMENT_MUTATION, () => ({
+  const date = new Date()
+
+  const { mutate, onDone } = useMutation(CREATE_COMMENT_MUTATION, () => ({
     variables: {
       description: description.value,
-      dateTime: new Date(),
+      dateTime: date,
       recipeId: props.recipeId,
       userId: props.userId
     }
   }))
   mutate()
+
+  onDone(() => {
+    comments.value.push(getNewComment(date, description.value))
+    description.value = ''
+  })
+}
+
+function getNewComment (date: Date, desc: string) {
+  return {
+    dateTime: date,
+    description: desc
+  }
 }
 </script>

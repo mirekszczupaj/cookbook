@@ -9,7 +9,7 @@ module.exports = defineConfig({
       })
       return definitions
     })
-  },
+  }
   // css: {
   //   loaderOptions: {
   //     scss: {
