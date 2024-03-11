@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "rehackt": "^0.0.6",
     "vue": "^3.4.18",
+    "vue-i18n": "9",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

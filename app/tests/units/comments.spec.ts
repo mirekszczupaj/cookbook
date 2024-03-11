@@ -8,11 +8,11 @@ describe('Registration', () => {
 
   it('New comment', async () => {
     const date = new Date()
-    const comment = instance.getNewComment(date, "Description")
+    const comment = instance.getNewComment(date, 'Description')
 
     expect(comment).toEqual({
-        dateTime: date,
-        description: "Description"
+      dateTime: date,
+      description: 'Description'
     })
   })
 })
