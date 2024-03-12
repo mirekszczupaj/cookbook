@@ -74,20 +74,17 @@ function sendForm () {
       dateTime: date,
       recipeId: props.recipeId,
       userId: props.userId
-    }
+    },
+    refetchQueries: [
+      COMMENTS_QUERY,
+      'getComments'
+    ]
   }))
   mutate()
 
   onDone(() => {
-    comments.value.push(getNewComment(date, description.value))
     description.value = ''
   })
 }
 
-function getNewComment (date: Date, desc: string) {
-  return {
-    dateTime: date,
-    description: desc
-  }
-}
 </script>
