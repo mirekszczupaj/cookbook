@@ -3,7 +3,7 @@
         <h2 class="text-2xl font-bold my-4">Comments</h2>
         <div v-if="comments?.length &&  recipeId">
             <div v-for="(comment, index) in comments" :key="index" class="border-b mb-4">
-                <span class="text-xs text-gray-500">{{comment.dateTime}}</span>
+                <span class="text-xs text-gray-500">{{ $d(comment.dateTime, 'long')}}</span>
                 <p class="my-4">{{comment.description}}</p>
             </div>
         </div>
@@ -74,20 +74,17 @@ function sendForm () {
       dateTime: date,
       recipeId: props.recipeId,
       userId: props.userId
-    }
+    },
+    refetchQueries: [
+      COMMENTS_QUERY,
+      'getComments'
+    ]
   }))
   mutate()
 
   onDone(() => {
-    comments.value.push(getNewComment(date, description.value))
     description.value = ''
   })
 }
 
-function getNewComment (date: Date, desc: string) {
-  return {
-    dateTime: date,
-    description: desc
-  }
-}
 </script>

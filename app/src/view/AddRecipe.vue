@@ -56,11 +56,21 @@ function sendForm () {
       image: image.value,
       description: description.value,
       userId: temUserId
+    },
+    update (cache, { data }) {
+      const cacheId = `${data.createRecipe.__typename}:${data.createRecipe.id}`
+
+      cache.modify({
+        fields: {
+          getRecipes (existingFieldData, { toReference }) {
+            return [...existingFieldData, toReference(cacheId)]
+          }
+        }
+      })
     }
   }))
   mutate()
   onDone(() => {
-    // TODO: Update recipes on listings
     router.push({ name: 'recipes' })
   })
 }
