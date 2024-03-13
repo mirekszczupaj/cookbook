@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="sendForm" class="p-4 m-auto max-w-2xl">
-    <h1 class="text-4xl py-6 font-bold">Login</h1>
+    <h1 class="text-4xl py-6 font-bold">{{ $t("form.login") }}</h1>
     <div>
-      <label for="urlInput"> Login </label>
+      <label for="urlInput">{{ $t("form.login") }}</label>
       <input
           id="urlInput"
           type="text"
@@ -11,7 +11,7 @@
       />
     </div>
             <div>
-            <label for="urlInput"> Password </label>
+            <label for="urlInput">{{ $t("form.password") }}</label>
             <input
                 id="urlInput"
                 type="text"
@@ -21,9 +21,9 @@
             </div>
 
             <div class="text-xs text-red-600 py-2" v-show="userNotFound">
-                  User not found
+                {{ $t("error.userNotFound") }}
             </div>
-    <button type="submit" class="bg-orange-400 py-2 px-6 rounded text-white">Login</button>
+    <button type="submit" class="bg-orange-400 py-2 px-6 rounded text-white">{{ $t("button.login") }}</button>
   </form>
 </template>
 <script setup lang="ts">

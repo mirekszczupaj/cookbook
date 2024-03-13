@@ -6,30 +6,30 @@
                     :to="{ name: 'recipes' }"
                     class="mr-4"
                 >
-                    Recipes
+                    {{ $t("navigation.recipes") }}
                 </router-link>
                 <router-link
                     :to="{ name: 'my-recipes' }"
                     v-if="isAuth"
                     class="mr-4"
                 >
-                    My Recipes
+                    {{ $t("navigation.myRecipes") }}
                 </router-link>
             </div>
             <div v-if="isAuth">
-                <span class="cursor-pointer" @click="logout()">Logout</span>
+                <span class="cursor-pointer" @click="logout()">{{ $t("navigation.logout") }}</span>
             </div>
             <div v-else>
                 <router-link
                     :to="{ name: 'register' }"
                 >
-                    Registration
+                    {{ $t("navigation.registration") }}
                 </router-link>
                 /
                 <router-link
                     :to="{ name: 'login' }"
                 >
-                    Login
+                    {{ $t("navigation.login") }}
                 </router-link>
             </div>
         </div>

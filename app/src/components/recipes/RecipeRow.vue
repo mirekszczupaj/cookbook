@@ -10,16 +10,16 @@
             :to="{ name: 'recipe', params: { id: recipe?.id } }"
             class="bg-orange-400 py-2 px-6 rounded text-white block mb-2 text-center"
           >
-          Show
+          {{ $t("button.show") }}
           </router-link>
           <router-link
             :to="{ name: 'edit-recipe', params: { id: recipe?.id, userID: recipe?.user } }"
             class="py-2 px-6 rounded text-white bg-cyan-600 block mb-2 text-center"
           >
-          Edit
+          {{ $t("button.edit") }}
           </router-link>
           <div class="py-2 px-6 rounded text-white block bg-red-500 text-center cursor-pointer" @click="removeRecupeById(recipe?.id)">
-            Delete
+            {{ $t("button.delete") }}
           </div>
         </div>
     </div>
