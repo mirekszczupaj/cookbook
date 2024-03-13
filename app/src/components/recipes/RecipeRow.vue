@@ -42,6 +42,15 @@ function removeRecupeById (id: string) {
   const { mutate } = useMutation(REMOVE_RECIPE_MUTATION, () => ({
     variables: {
       id: parseInt(id)
+    },
+    update (cache) {
+      cache.modify({
+        fields: {
+          getRecipes (existingFieldData) {
+            existingFieldData.filter(recipe => recipe.id !== id)
+          }
+        }
+      })
     }
   }))
   mutate()
