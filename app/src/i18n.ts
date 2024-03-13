@@ -1,4 +1,9 @@
 import { createI18n } from 'vue-i18n'
+import { en } from '@/snippets/en'
+
+const messages = {
+  en
+}
 
 const i18n = createI18n({
   datetimeFormats: {
@@ -15,7 +20,8 @@ const i18n = createI18n({
         minute: 'numeric'
       }
     }
-  }
+  },
+  messages
 })
 
 export default i18n

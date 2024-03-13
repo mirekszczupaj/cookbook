@@ -8,7 +8,7 @@
             :to="{ name: 'recipe', params: { id: recipe?.id } }"
             class="bg-orange-400 py-2 px-6 rounded text-white mt-2 inline-block"
           >
-            Show
+          {{ $t("button.show") }}
           </router-link>
         </div>
     </div>

@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="sendForm" class="p-4 m-auto max-w-2xl">
-    <h1 class="text-4xl py-6 font-bold">Registration</h1>
+    <h1 class="text-4xl py-6 font-bold">{{ $t("form.registration") }}</h1>
     <div>
-      <label for="login"> Login </label>
+      <label for="login">{{ $t("form.login") }}</label>
       <input
           id="login"
           type="text"
@@ -11,7 +11,7 @@
       />
     </div>
             <div>
-            <label for="password"> Password </label>
+            <label for="password">{{ $t("form.password") }}</label>
             <input
                 id="password"
                 type="text"
@@ -20,7 +20,7 @@
             />
             </div>
             <div>
-            <label for="passwordConfirmation"> Confirm Password </label>
+            <label for="passwordConfirmation">{{ $t("form.confirmPassword") }}</label>
             <input
                 id="passwordConfirmation"
                 type="text"
@@ -30,13 +30,13 @@
             </div>
 
             <div class="text-xs text-red-600 py-2" v-show="!isPasswordsEqual">
-                  Provided Passwords must be the same!
+                {{ $t("error.samePassword") }}
               </div>
 
             <div class="text-xs text-green-600 py-2" v-show="sended">
-                  Registered user
+              {{ $t("status.registered") }}
             </div>
-    <button type="submit" class="bg-orange-400 py-2 px-6 rounded text-white">Register</button>
+    <button type="submit" class="bg-orange-400 py-2 px-6 rounded text-white">{{ $t("button.register") }}</button>
   </form>
 </template>
 <script setup lang="ts">
