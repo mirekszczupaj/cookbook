@@ -38,7 +38,9 @@ import { CREATE_RECIPE_MUTATION } from '../graphql/mutation/create-recipe'
 import { apolloClient } from '../appolloClient'
 import { provideApolloClient, useMutation } from '@vue/apollo-composable'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const title = ref('')
 const image = ref('')
 const description = ref('')
@@ -46,8 +48,7 @@ const router = useRouter()
 
 provideApolloClient(apolloClient)
 
-// TODO: Temp user id
-const temUserId = 1
+const userId = store.getters.getUserId
 
 function sendForm () {
   const { mutate, onDone } = useMutation(CREATE_RECIPE_MUTATION, () => ({
@@ -55,7 +56,7 @@ function sendForm () {
       title: title.value,
       image: image.value,
       description: description.value,
-      userId: temUserId
+      userId
     },
     update (cache, { data }) {
       const cacheId = `${data.createRecipe.__typename}:${data.createRecipe.id}`

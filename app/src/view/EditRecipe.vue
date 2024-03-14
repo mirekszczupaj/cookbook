@@ -38,18 +38,18 @@ import { UPDATE_RECIPE_MUTATION } from '../graphql/mutation/update-recipe'
 import { RECIPE_QUERY } from '../graphql/query/recipe'
 import { apolloClient } from '../appolloClient'
 import { provideApolloClient, useMutation, useQuery } from '@vue/apollo-composable'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const title = ref('')
 const image = ref('')
 const description = ref('')
 
+const userId = store.getters.getUserId
+
 provideApolloClient(apolloClient)
 
 const props = defineProps({
-  userId: {
-    type: Number,
-    required: true
-  },
   id: {
     type: Number,
     required: true
@@ -75,7 +75,7 @@ function sendForm () {
       title: title.value,
       image: image.value,
       description: description.value,
-      userId: props.userId
+      userId
     }
   }))
   mutate()

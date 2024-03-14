@@ -10,13 +10,13 @@
                 </router-link>
                 <router-link
                     :to="{ name: 'my-recipes' }"
-                    v-if="isAuth"
+                    v-if="auth"
                     class="mr-4"
                 >
                     {{ $t("navigation.myRecipes") }}
                 </router-link>
             </div>
-            <div v-if="isAuth">
+            <div v-if="auth">
                 <span class="cursor-pointer" @click="logout()">{{ $t("navigation.logout") }}</span>
             </div>
             <div v-else>
@@ -37,20 +37,14 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
+const auth = store.getters.getAuth
 const router = useRouter()
 
-defineProps({
-  isAuth: {
-    type: Boolean
-  }
-})
-
-const emit = defineEmits(['auth'])
-
 function logout () {
-  sessionStorage.removeItem('token')
-  emit('auth', false)
+  store.dispatch('setAuth', false)
   router.push({ name: 'recipes' })
 }
 </script>

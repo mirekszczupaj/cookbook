@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isAuth">
+    <div v-if="auth">
         <h2 class="text-2xl font-bold my-4">Comments</h2>
         <div v-if="comments?.length &&  recipeId">
             <div v-for="(comment, index) in comments" :key="index" class="border-b mb-4">
@@ -30,6 +30,11 @@ import { CREATE_COMMENT_MUTATION } from '../../graphql/mutation/create-comment'
 import { COMMENTS_QUERY } from '../../graphql/query/comments'
 import { apolloClient } from '../../appolloClient'
 import { provideApolloClient, useMutation, useQuery } from '@vue/apollo-composable'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const userId = store.getters.getUserId
+const auth = store.getters.getAuth
 
 provideApolloClient(apolloClient)
 
@@ -42,16 +47,9 @@ const description = ref<string>('')
 const comments = ref<[comment]>([{ dateTime: new Date(), description: '' }])
 
 const props = defineProps({
-  userId: {
-    type: Number,
-    required: true
-  },
   recipeId: {
     type: Number,
     required: true
-  },
-  isAuth: {
-    type: Boolean
   }
 })
 
@@ -73,7 +71,7 @@ function sendForm () {
       description: description.value,
       dateTime: date,
       recipeId: props.recipeId,
-      userId: props.userId
+      userId: userId
     },
     refetchQueries: [
       COMMENTS_QUERY,

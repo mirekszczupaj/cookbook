@@ -18,16 +18,13 @@ import { useQuery } from '@vue/apollo-composable'
 import { RECIPES_QUERY } from '../graphql/query/recipes'
 import { computed } from 'vue'
 import RecipeRow from '../components/recipes/RecipeRow.vue'
+import { useStore } from 'vuex'
 
-const props = defineProps({
-  userId: {
-    type: Number,
-    required: true
-  }
-})
+const store = useStore()
+const userId = store.getters.getUserId
 
 const { result } = useQuery(RECIPES_QUERY, {
-  userId: props.userId
+  userId
 })
 
 const recipes = computed(() => {

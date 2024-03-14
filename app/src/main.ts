@@ -4,6 +4,7 @@ import { apolloClient } from './appolloClient'
 import App from './App.vue'
 import router from './router'
 import i18n from './i18n'
+import store from './store'
 
 // TODO: Check
 import './main.scss'
@@ -18,4 +19,5 @@ const app = createApp({
 
 app.use(router)
 app.use(i18n)
+app.use(store)
 app.mount('#app')

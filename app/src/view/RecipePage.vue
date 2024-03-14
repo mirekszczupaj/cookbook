@@ -3,7 +3,7 @@
         <img :src="recipe?.image" :alt="recipe?.title" class="h-60 w-full object-cover">
         <h1 class="text-4xl py-6 font-bold">{{ recipe?.title }}</h1>
         <p>{{ recipe?.description }}</p>
-        <CommentsList :userId="userId" :recipeId="recipe?.id || 0" :isAuth="isAuth" />
+        <CommentsList :recipeId="recipe?.id || 0" />
     </div>
 </template>
 <script setup lang="ts">
@@ -16,13 +16,6 @@ const props = defineProps({
   id: {
     type: String,
     required: true
-  },
-  userId: {
-    type: Number,
-    required: true
-  },
-  isAuth: {
-    type: Boolean
   }
 })
 
