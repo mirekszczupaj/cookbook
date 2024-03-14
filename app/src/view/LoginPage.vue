@@ -32,15 +32,15 @@ import { LOGIN_USER_MUTATION } from '../graphql/mutation/login'
 import { apolloClient } from '../appolloClient'
 import { provideApolloClient, useMutation } from '@vue/apollo-composable'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const login = ref('')
 const password = ref('')
 const userNotFound = ref(false)
 const router = useRouter()
 
 provideApolloClient(apolloClient)
-
-const emit = defineEmits(['user'])
 
 function sendForm () {
   const { mutate, onDone } = useMutation(LOGIN_USER_MUTATION, () => ({
@@ -55,12 +55,8 @@ function sendForm () {
   mutate()
 
   onDone((res) => {
-    // TODO: It should by save in cookie with httponly flag ?
-    sessionStorage.setItem('token', JSON.stringify(res.data.login.access_token))
-    emit('user', {
-      auth: true,
-      id: res.data.login.user.id
-    })
+    store.dispatch('setUserID', res.data.login.user.id)
+    store.dispatch('setAuth', true)
     router.push({ name: 'recipes' })
   })
 }
